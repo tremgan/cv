@@ -40,6 +40,40 @@ Do not treat the TeX as software worth maintaining. Specifically:
   aren't already in the repo or supplied by Remi. Rewording is fine; inventing
   is not.
 
+## No dashes, no AI slop
+
+A CV that reads as LLM output is worse than a plainly written one. Two rules,
+both absolute.
+
+### Dashes
+
+**Never use a dash in a sentence or a bullet.** No em-dash, no en-dash, no
+`--`, no ` - `. If a sentence wants a dash, it wants a comma, a colon, or two
+sentences. Rewrite it.
+
+The ONLY permitted dash in this document is `--` inside a date range
+(`Feb 2022 -- Aug 2023`). Never the literal characters. Never anywhere else.
+
+### Words and shapes that read as AI
+
+Do not use:
+
+- Verb inflation: *leveraged, utilized, spearheaded, orchestrated, championed,
+  drove, empowered.* Say built, wrote, ran, measured, shipped, fixed.
+- Empty intensifiers: *robust, seamless, scalable, cutting-edge,
+  state-of-the-art, comprehensive, innovative, powerful, sophisticated.*
+- Consultant filler: *delve, showcase, underscore, testament to, key enabler,
+  at the intersection of, end-to-end* (unless it literally means
+  first-step-to-last-step and you can name both ends).
+- The rule of three. "Fast, scalable, and maintainable" is a rhythm, not
+  information. Two items, or one specific one.
+- "Not only X, but also Y."
+- Hedges that add nothing: *helped to, worked to, contributed to, was involved
+  in, supported.* Either you did it or you didn't.
+
+The test for any bullet: could it appear on someone else's CV unchanged? If
+yes, it says nothing. Replace it with the tool, the number, or the result.
+
 ## Hard constraints
 
 - **One page.** Verify after any content addition — check the built PDF, not
@@ -85,7 +119,8 @@ Warnings at untouched lines are pre-existing; ignore them.
 
 ## Known quirks
 
-- **En-dashes don't render.** A literal `–` (U+2013) is missing from
-  `SourceSansPro-tlf-t1`, so it silently prints as a blank gap. Use `--`
-  instead. Several date ranges are currently affected.
+- **Literal en-dashes silently vanish.** `–` (U+2013) is missing from
+  `SourceSansPro-tlf-t1`, so it prints as a blank gap rather than erroring.
+  Date ranges must use `--`. See the dash rule above. Lines 220, 233 and 249
+  are currently broken this way.
 - **`pdftitle={John Doe's CV}`** (line 22) is leftover template metadata.
