@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pgrep -f \"watchexec.*tectonic cv[.]tex\" >/dev/null 2>&1 || (cd \"$CLAUDE_PROJECT_DIR\" && nohup ./watch.sh >/dev/null 2>&1 &)",
+            "async": true,
+            "statusMessage": "Starting cv.pdf watcher"
+          }
+        ]
+      }
+    ]
+  }
+}
