@@ -11,6 +11,11 @@ on:
 permissions:
   contents: write
 
+# Serialize runs so two builds never race to push cv.pdf.
+concurrency:
+  group: build-cv
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
