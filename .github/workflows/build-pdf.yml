@@ -1,0 +1,48 @@
+name: Build CV
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'cv.tex'
+      - '.github/workflows/build-pdf.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Tectonic bundle
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/Tectonic
+          key: tectonic-bundle-${{ hashFiles('cv.tex') }}
+          restore-keys: tectonic-bundle-
+
+      - name: Install Tectonic
+        run: |
+          curl -fsSL -o tectonic.tar.gz \
+            https://github.com/tectonic-typesetting/tectonic/releases/download/tectonic%400.17.0/tectonic-0.17.0-x86_64-unknown-linux-gnu.tar.gz
+          tar -xzf tectonic.tar.gz
+          sudo mv tectonic /usr/local/bin/
+          rm tectonic.tar.gz
+
+      - name: Build cv.pdf
+        run: tectonic cv.tex
+
+      - name: Commit the rebuilt PDF
+        run: |
+          if git diff --quiet -- cv.pdf; then
+            echo "cv.pdf unchanged, nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cv.pdf
+          git commit -m "rebuild cv.pdf"
+          git push
