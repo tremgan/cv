@@ -9,12 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-
-# Serialize runs so two builds never race to push cv.pdf.
-concurrency:
-  group: build-cv
-  cancel-in-progress: false
+  contents: read
 
 jobs:
   build:
@@ -37,17 +32,7 @@ jobs:
           sudo mv tectonic /usr/local/bin/
           rm tectonic.tar.gz
 
+      # The committed cv.pdf is kept current by the local pre-push hook, so CI
+      # only checks that cv.tex still builds.
       - name: Build cv.pdf
         run: tectonic cv.tex
-
-      - name: Commit the rebuilt PDF
-        run: |
-          if git diff --quiet -- cv.pdf; then
-            echo "cv.pdf unchanged, nothing to commit."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add cv.pdf
-          git commit -m "rebuild cv.pdf"
-          git push
