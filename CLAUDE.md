@@ -117,6 +117,21 @@ There is no test suite — verification is visual. After changing `cv.tex`:
 
 Warnings at untouched lines are pre-existing; ignore them.
 
+### The pre-push hook
+
+`hooks/pre-push` blocks a push when the committed `cv.pdf` was not built from
+the committed `cv.tex`. It rebuilds `cv.tex` at HEAD into a temp dir and
+compares extracted text (via `pypdf`), because tectonic output is not
+byte-reproducible. On a mismatch, rebuild and amend:
+
+```bash
+tectonic cv.tex && git add cv.pdf && git commit --amend --no-edit
+```
+
+A fresh clone activates it once with `git config core.hooksPath hooks`.
+CI (`.github/workflows/build-pdf.yml`) only checks that `cv.tex` builds; it no
+longer commits `cv.pdf`.
+
 ## Known quirks
 
 - **Literal en-dashes silently vanish.** `–` (U+2013) is missing from

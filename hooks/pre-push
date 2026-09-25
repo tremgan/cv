@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+# Block a push whose committed cv.pdf was not built from the committed cv.tex.
+# tectonic output is not byte-reproducible, so compare extracted text, not hashes.
+set -euo pipefail
+cd "$(git rev-parse --show-toplevel)"
+
+tmp=$(mktemp -d)
+trap 'rm -rf "$tmp"' EXIT
+
+git show HEAD:cv.pdf > "$tmp/committed.pdf"
+git show HEAD:cv.tex > "$tmp/cv.tex"
+
+if ! tectonic --outdir "$tmp" "$tmp/cv.tex" > "$tmp/build.log" 2>&1; then
+    echo "pre-push: tectonic failed to build cv.tex at HEAD:" >&2
+    tail -20 "$tmp/build.log" >&2
+    exit 1
+fi
+
+status=0
+python3 - "$tmp/cv.pdf" "$tmp/committed.pdf" <<'PY' || status=$?
+import sys
+try:
+    from pypdf import PdfReader
+except ImportError:
+    print("pre-push: pypdf not installed, skipping cv.pdf staleness check.", file=sys.stderr)
+    sys.exit(0)
+
+def text(path):
+    return "\n".join(page.extract_text() or "" for page in PdfReader(path).pages)
+
+sys.exit(0 if text(sys.argv[1]) == text(sys.argv[2]) else 1)
+PY
+
+if [ "$status" -ne 0 ]; then
+    cat >&2 <<'MSG'
+pre-push: committed cv.pdf does not match committed cv.tex.
+Rebuild and amend it before pushing:
+    tectonic cv.tex && git add cv.pdf && git commit --amend --no-edit
+MSG
+    exit 1
+fi
