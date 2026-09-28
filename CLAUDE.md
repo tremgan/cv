@@ -85,14 +85,17 @@ yes, it says nothing. Replace it with the tool, the number, or the result.
 
 **`cv.pdf` is a build artifact. Never edit, hand-patch, or write to it.**
 The only way it changes is `tectonic` regenerating it from `cv.tex`. If the
-PDF looks wrong, the fix goes in `cv.tex`.
+PDF looks wrong, the fix goes in `cv.tex`. The same goes for `preview.png`,
+the README's image of page 1: `./render-preview.sh` regenerates it from
+`cv.pdf`.
 
 ### The watcher runs automatically
 
 A `SessionStart` hook in `.claude/settings.json` launches `./watch.sh`
 detached at the start of every session. It builds once immediately, then
-rebuilds `cv.pdf` on every `.tex` save (`watchexec --exts tex -- tectonic
-cv.tex`). Its output is discarded.
+rebuilds `cv.pdf` and `preview.png` on every `.tex` save (`watchexec --exts
+tex -- bash -c 'tectonic cv.tex && ./render-preview.sh'`). Its output is
+discarded.
 
 The hook is guarded by `pgrep`, so it will not start a second watcher if one
 is already running in a terminal. **Do not launch `./watch.sh` yourself** —
@@ -122,10 +125,13 @@ Warnings at untouched lines are pre-existing; ignore them.
 `hooks/pre-push` blocks a push when the committed `cv.pdf` was not built from
 the committed `cv.tex`. It rebuilds `cv.tex` at HEAD into a temp dir and
 compares extracted text (via `pypdf`), because tectonic output is not
-byte-reproducible. On a mismatch, rebuild and amend:
+byte-reproducible. It then re-renders the committed `cv.pdf` and compares the
+PNG byte for byte against the committed `preview.png`, which `qlmanage` does
+render reproducibly. On a mismatch, rebuild and amend:
 
 ```bash
-tectonic cv.tex && git add cv.pdf && git commit --amend --no-edit
+tectonic cv.tex && ./render-preview.sh
+git add cv.pdf preview.png && git commit --amend --no-edit
 ```
 
 A fresh clone activates it once with `git config core.hooksPath hooks`.

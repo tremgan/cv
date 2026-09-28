@@ -39,3 +39,22 @@ Rebuild and amend it before pushing:
 MSG
     exit 1
 fi
+
+# preview.png is the README's image of cv.pdf; qlmanage renders the same PDF to
+# the same bytes, so compare the committed PNG against a fresh render.
+if ! command -v qlmanage > /dev/null; then
+    echo "pre-push: qlmanage not available, skipping preview.png staleness check." >&2
+    exit 0
+fi
+
+git show HEAD:preview.png > "$tmp/committed.png"
+./render-preview.sh "$tmp/committed.pdf" "$tmp/fresh.png"
+
+if ! cmp -s "$tmp/committed.png" "$tmp/fresh.png"; then
+    cat >&2 <<'MSG'
+pre-push: committed preview.png does not match committed cv.pdf.
+Rebuild and amend it before pushing:
+    ./render-preview.sh && git add preview.png && git commit --amend --no-edit
+MSG
+    exit 1
+fi
