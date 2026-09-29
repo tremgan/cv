@@ -19,7 +19,7 @@
 \usepackage{fontawesome5} % for using icons
 \usepackage{amsmath} % for math
 \usepackage[
-    pdftitle={John Doe's CV},
+    pdftitle={Remi Tregan's CV},
     pdfauthor={Remi Tregan},
     pdfcreator={LaTeX with RenderCV},
     colorlinks=true,
@@ -205,7 +205,7 @@
 \section{Skills}
 \begin{onecolentry}
     \textbf{Programming Languages:} Python, R\\
-    \textbf{ML \& Data:} scikit-learn, PyTorch, pandas/polars, statsmodels  \\
+    \textbf{ML \& Data:} scikit-learn, PyTorch, PyMC, NumPy/SciPy, pandas/polars, statsmodels  \\
     \textbf{Engineering \& Infrastructure:} Docker \& Docker Compose, git, GitHub Actions for CI/CD, FastAPI, SQLModel/Postgres, HPC/SSH, uv \\
     \textbf{Languages:} English, German, French (all fluent)
 \end{onecolentry}
@@ -216,7 +216,6 @@
             \textbf{ETH Zürich}: Msc. Computational Biology \& Bioinformatics
             \begin{highlights}
             \item Provisional 5.65/6 GPA
-            \item Strong focus on ML in life sciences
             \item Relevant coursework: Probabilistic AI, Protein Design, Machine Learning for Genomics, Image Analysis \& Computer Vision, Statistical Models in Computational Biology, Computational Statistics
                 \end{highlights}
         \end{twocolentry}
@@ -225,10 +224,21 @@
         }
             \textbf{ETH Zürich}: Bsc. Biology
             \begin{highlights}
-                \item Excellent academic record: 5.65/6 GPA
+                \item 5.65/6 GPA
             \end{highlights}
         \end{twocolentry}
 
+
+\section{Projects}
+\begin{twocolentry}{
+             \hspace{1cm} \mbox{\hrefWithoutArrow{https://github.com/tremgan/malt}{{\footnotesize\faGithub}\hspace*{0.13cm}tremgan/malt}}
+        }
+            \textbf{malt}: Bayesian active learning for growth media optimization
+            \begin{highlights}
+            \item Python package that proposes the next batch of media to run: a Bayesian Gamma GLM fit by MCMC in PyMC, with batches picked by q-Noisy Expected Improvement, reimplemented in NumPy over the posterior draws and refined with L-BFGS-B.
+            \item Scored against iterative response-surface DOE on simulated labs with a known optimum. Over three factors and 81 runs, cumulative regret ends a median 43\% lower where the Gamma GLM fits the truth exactly and 20\% lower where it does not, over 20 paired campaigns each.
+                \end{highlights}
+        \end{twocolentry}
 
     \section{Experience}
  \begin{twocolentry}{
@@ -239,7 +249,7 @@
             \textbf{FoodBrewer AG}: Automation Engineer (100\% $\Rightarrow$ 50\%)
                
             \begin{highlights}
-            \item Built lab automation pipelines (PyLabRobot, OT-2 liquid handler) driven by CSV-defined experimental designs, cutting run time by 80\%. Version-controlled (git, GitHub) for reproducible runs.
+            \item Built lab automation pipelines (PyLabRobot, OT-2 liquid handler) driven by CSV-defined experimental designs, cutting run time by 80\%.
              \item Applied Design of Experiments (pyDoE) to optimize media composition; quantified biomass via time-series imaging (scikit-image) and modeled growth using Gaussian Process regression
             \item Automated ingestion of external lab report PDFs (PowerAutomate, Docling) into an internal Postgres database (SQLModel) used in EFSA/FDA regulatory submissions.
           
@@ -255,9 +265,7 @@
             \textbf{FoodBrewer AG}: Scientific Intern (100\%)
             \begin{highlights}
             \item Established well-plate growth assays for cacao and coffee cell cultures
-               
-                \item Worked with plant cell cultures (cacao, coffee): Introduction of new plant material, propagation in shake flasks, maintenance, general lab support
-                \item Scripting for automation of various data transfer tasks
+                \item Wrote scripts to automate recurring data transfer tasks
                 
             \end{highlights}
         \end{twocolentry}
@@ -266,7 +274,7 @@
 
 \begin{onecolentry}
     \begin{highlights}
-        \item \textbf{International-level Powerlifter}: Competed at World (2024) and European (2023, 2022) Championships representing Switzerland.
+        \item \textbf{International-level Powerlifter}: World (2024) and European (2023, 2022) Championships for Switzerland.
         
         \end{highlights}
 \end{onecolentry}
