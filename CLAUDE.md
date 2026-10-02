@@ -94,7 +94,7 @@ the README's image of page 1: `./render-preview.sh` regenerates it from
 A `SessionStart` hook in `.claude/settings.json` launches `./watch.sh`
 detached at the start of every session. It builds once immediately, then
 rebuilds `cv.pdf` and `preview.png` on every `.tex` save (`watchexec --exts
-tex -- bash -c 'tectonic cv.tex && ./render-preview.sh'`). Its output is
+tex -- 'tectonic cv.tex && ./render-preview.sh'`). Its output is
 discarded.
 
 The hook is guarded by `pgrep`, so it will not start a second watcher if one

@@ -7,4 +7,4 @@ tectonic cv.tex
 ./render-preview.sh
 
 # Rebuild whenever any .tex file changes.
-exec watchexec --exts tex -- bash -c 'tectonic cv.tex && ./render-preview.sh'
+exec watchexec --exts tex -- 'tectonic cv.tex && ./render-preview.sh'
