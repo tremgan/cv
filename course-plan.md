@@ -57,6 +57,17 @@ Biology, 10 ECTS:
 | --- | --- | --- | --- |
 | 262-0800-00L | Master's Thesis (ETH, 24 weeks) | 30 | Spring 2028 |
 
+## Taking now, not in the signed plan
+
+| Course Nr. | Title | ECTS | When | Lecturer |
+| --- | --- | --- | --- | --- |
+| 262-0201-00L | Multimodal Medical AI | 4 | Autumn 2026 | M. Moor |
+
+This course is on the closed core list (Data Science subcategory) but is not
+ticked in the signed plan. Core already sits at exactly 40 ECTS and advanced at
+exactly 30, so counting it toward either category needs a written mentor
+approval and a re-signed plan. Until then it is 4 ECTS beyond the 120.
+
 ## Notes
 
 All courses at ETH. The signed form spells two entries wrong, "Computational
