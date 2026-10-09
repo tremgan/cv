@@ -172,10 +172,10 @@
 
         \vspace{3pt}
         \normalsize
-        \textnormal{MSc Comp. Biology \& Bioinformatics, ETH Zürich} \textbar\ \textit{I like to build things in and around data, especially in the life sciences.} 
+        \textnormal{Msc. Comp. Biology \& Bioinformatics, ETH Zürich} \textbar\ \textit{I like to build things in and around data, especially in the life sciences.} 
 
         \vspace{4pt}
-        \mbox{{\footnotesize\faMapMarker*}\hspace*{0.13cm}Zürich}%
+        \mbox{{\footnotesize\faMapMarker*}\hspace*{0.13cm}Zürich, Switzerland}%
         \kern 0.25 cm%
         \AND%
         \kern 0.25 cm%
@@ -204,14 +204,13 @@
 
 \section{Skills}
 \begin{onecolentry}
-    \textbf{Programming Languages:} Python, R\\
-    \textbf{ML \& Data:} scikit-learn, PyTorch, PyMC, NumPy/SciPy, pandas/polars, statsmodels, scikit-image  \\
-    \textbf{Engineering \& Infrastructure:} Docker, git, GitHub Actions, FastAPI, SQLModel/Postgres, Playwright, HPC (SLURM), uv \\
+    \textbf{ML \& Data:} Python, scikit-learn, PyTorch, PyMC, NumPy/SciPy, pandas/polars, statsmodels, scikit-image  \\
+    \textbf{Engineering \& Infrastructure:} Docker, git, FastAPI, SQLModel, Postgres, Playwright, HPC (SLURM), uv \\
     \textbf{Languages:} English, German, French (all fluent)
 \end{onecolentry}
     \section{Education}
     \begin{twocolentry}{
-             \hspace{1cm} Started Sept 2025
+             \hspace{1cm} Sep 2025 -- Dec 2027 \newline (expected)
         }
             \textbf{ETH Zürich}: Msc. Computational Biology \& Bioinformatics
             \begin{highlights}
@@ -220,51 +219,24 @@
                 \end{highlights}
         \end{twocolentry}
       \begin{twocolentry}{
-             \hspace{1cm} Feb 2022 -- Aug 2023 \newline Sept 2024 -- May 2025
+             \hspace{1cm} Feb 2022 -- May 2025
         }
-            \textbf{ETH Zürich}: Bsc. Biology
-            \begin{highlights}
-                \item 5.65/6 GPA
-            \end{highlights}
+            \textbf{ETH Zürich}: Bsc. Biology, 5.65/6 GPA
         \end{twocolentry}
 
 
-\section{Projects}
-\begin{twocolentry}{
-             \hspace{1cm} \mbox{\hrefWithoutArrow{https://github.com/tremgan/malt}{{\footnotesize\faGithub}\hspace*{0.13cm}tremgan/malt}}
-        }
-            \textbf{malt}: Bayesian active learning for growth media optimization
-            \begin{highlights}
-            \item Python package that proposes the next batch of media to run: a Bayesian Gamma GLM fit by MCMC in PyMC, with batches picked by q-Noisy Expected Improvement, reimplemented in NumPy over the posterior draws and refined with L-BFGS-B.
-            \item Scored against iterative response-surface DOE on simulated labs with a known optimum. Over three factors and 81 runs, median cumulative regret ends 43\% lower where the Gamma GLM fits the truth and 20\% lower where it does not.
-                \end{highlights}
-        \end{twocolentry}
-
-    \begin{twocolentry}{
-             \mbox{\hrefWithoutArrow{https://github.com/tremgan/swiss-sports-bet}{{\footnotesize\faGithub}\hspace*{0.13cm}tremgan/swiss-sports-bet}}
-
-             \mbox{\hrefWithoutArrow{https://tremgan.github.io/swiss-sports-bet/}{{\footnotesize\faGlobe}\hspace*{0.13cm}live page}}
-        }
-            \textbf{swiss-sports-bet}: cross-bookmaker odds comparison and arbitrage detection
-            \begin{highlights}
-            \item Two scrapers (REST, and compressed WebSocket frames via Playwright) feed a FastAPI/SQLModel service on Postgres.
-            \item Every three hours at no cost: Actions scrapes, Supabase stores, Pages serves.
-            \item Ranks fixtures by combined overround, with a stake split when it goes under 1.
-                \end{highlights}
-        \end{twocolentry}
-
-    \section{Experience}
+\section{Experience}
  \begin{twocolentry}{
             Horgen, ZH
 
         Jun 2025 -- May 2026
         }
-            \textbf{FoodBrewer AG}: Automation Engineer (100\% $\Rightarrow$ 50\%)
+            \textbf{FoodBrewer AG}: Automation Engineer (100\%, then 50\% on Msc. start)
                
             \begin{highlights}
-            \item Built lab automation pipelines (PyLabRobot, OT-2 liquid handler) driven by CSV-defined experimental designs, cutting run time by 80\%.
-             \item Optimized media composition with Design of Experiments (pyDoE); modeled growth with Gaussian Processes on biomass from time-series imaging (scikit-image)
-            \item Automated ingestion of external lab report PDFs (PowerAutomate, Docling) into an internal Postgres database (SQLModel) used in EFSA/FDA regulatory submissions.
+            \item Implemented (PyLabRobot) and owned the lab's liquid handling layer for our Opentrons OT-2 robot to automate media screening experiments, saving 80\% in active labour time. Ran 10 screening experiments, all reproducible and auditable via git.
+          \item Optimised media composition with Design of Experiments (pyDOE3). Modelled growth with Gaussian Processes and parametric fits, using an ensemble of fitted curves for a distribution over growth rates.
+            \item Automated external lab report PDF downloads to OneDrive (PowerAutomate) and wrote an extractor (pdfplumber, Pydantic) behind a FastAPI endpoint in Docker.
           
                     
             \end{highlights}
@@ -273,13 +245,39 @@
         \begin{twocolentry}{
             Horgen, ZH
 
-        Sept 2023 -- Aug 2024
+        Sep 2023 -- Aug 2024
         }
-            \textbf{FoodBrewer AG}: Scientific Intern (100\%)
-            \begin{highlights}
-            \item Established well-plate growth assays for cacao and coffee cell cultures
+        \textbf{FoodBrewer AG}: Scientific Intern (100\%)
+        \begin{highlights}
+            
+            \item Established well-plate growth assays for cacao and coffee cell cultures.
+                \item Quantified media performance from biomass read-outs of well-plate images.
+                \item Designed and implemented a mechanistic ODE model (Monod kinetics) of growth on biomass and mass spectrometry metabolite data.
                 
             \end{highlights}
+        \end{twocolentry}
+
+
+\section{Projects}
+\begin{twocolentry}{
+             \hspace{1cm} \mbox{\hrefWithoutArrow{https://github.com/tremgan/malt}{{\footnotesize\faGithub}\hspace*{0.13cm}tremgan/malt}}
+        }
+            \textbf{malt}: Bayesian active learning for growth media optimisation
+            \begin{highlights}
+\item Python package that proposes the next batch of media to run: a Bayesian Gamma GLM fit by MCMC in PyMC, with batches picked by q-Noisy Expected Improvement, reimplemented in NumPy over the posterior draws and refined with L-BFGS-B.
+                \end{highlights}
+        \end{twocolentry}
+
+    \begin{twocolentry}{
+             \mbox{\hrefWithoutArrow{https://github.com/tremgan/swiss-sports-bet}{{\footnotesize\faGithub}\hspace*{0.13cm}tremgan/swiss-sports-bet}}
+
+             \mbox{\hrefWithoutArrow{https://tremgan.github.io/swiss-sports-bet/}{{\footnotesize\faGlobe}\hspace*{0.13cm}live page}}
+        }
+            \textbf{swiss-sports-bet}: Cross-bookmaker odds comparison and arbitrage detection
+            \begin{highlights}
+            \item Two scrapers (REST, and compressed WebSocket frames via Playwright) feed a FastAPI/SQLModel service on Postgres, hosted on Supabase.
+            \item Runs every three hours at no cost: GitHub Actions scrapes into the database, GitHub Pages serves latest odds and arbitrage opportunities.
+                \end{highlights}
         \end{twocolentry}
 
 \section{Extras}

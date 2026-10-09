@@ -74,6 +74,29 @@ Do not use:
 The test for any bullet: could it appear on someone else's CV unchanged? If
 yes, it says nothing. Replace it with the tool, the number, or the result.
 
+## Mechanical checklist
+
+From the FAANG Tech Leads resume checklist
+(<https://www.faangtechleads.com/resume/checklist>; the Experience, Skills,
+Education and Projects sections are paywalled, so only the general, contact
+and summary rules below are from it). These are format rules, not content
+rules. On a conflict, the content principles above win.
+
+- One font throughout, readable and common. One date format throughout,
+  `MMM YYYY`: `Sep`, not `Sept`.
+- Reverse chronological order within every section.
+- Spell out an acronym at its first occurrence, or drop it.
+- Contact block: name, email, phone with country code, city and country,
+  LinkedIn. No photo, no age, no birthday.
+- Use an email address that outlives the degree. A school address expires.
+- Link only profiles with something on them, and click every link before a
+  push.
+- The header line under the name is a summary, so it carries a specialized
+  skill in the language of the job posting. It is not a statement of
+  objective, and it is not a sentence about what Remi enjoys.
+- Non-tech extracurriculars are a liability by default. Keep one only when it
+  says something a bullet cannot.
+
 ## Hard constraints
 
 - **One page.** Verify after any content addition — check the built PDF, not
@@ -145,3 +168,11 @@ longer commits `cv.pdf`.
   Date ranges must use `--`. See the dash rule above. Lines 220, 233 and 249
   are currently broken this way.
 - **`pdftitle={John Doe's CV}`** (line 22) is leftover template metadata.
+
+## Accepted deviations (do not flag)
+
+Remi has decided these are fine. Don't raise them in reviews.
+
+- The header tagline ("I like to build things in and around data,
+  especially in the life sciences.") stays, despite the summary rule.
+- The contact email is rtregan@ethz.ch, despite the expiring-address rule.
